@@ -19,7 +19,13 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src",
@@ -29,11 +35,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ],
-  "baseUrl": ".",
-  "paths": {
-    "@app/*": [
-      "src/*"
-    ]
-  }
+  ]
 }
