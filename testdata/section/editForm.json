@@ -1,0 +1,105 @@
+{
+    "type": "form",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "title": "Personal Detail",
+                    "type": "form",
+                    "formLayout": {
+                        "fields": [
+                            {
+                                "attribute": "userName",
+                                "title": "Name",
+                                "required": true,
+                                "type": "string",
+                                "validationRule": "string",
+                                "errorMessageType": "Only Alphabets are allowed",
+                                "length": {
+                                    "min": 3,
+                                    "max": 20,
+                                    "message": "Minimum 3 chars, and maximum of 20 chars"
+                                }
+                            },
+                            {
+                                "attribute": "gender",
+                                "title": "Gender",
+                                "required": true,
+                                "type": "select",
+                                "options": {
+                                    "M": "Male",
+                                    "F": "Female",
+                                    "T": "Transgender"
+                                }
+                            },
+                            {
+                                "attribute": "dob",
+                                "title": "Dob",
+                                "required": true,
+                                "type": "date",
+                                "validationRule": "date",
+                                "format": {
+                                    "pattern": "dd-MM-yyyy",
+                                    "message": "pattern should be this"
+                                },
+                                "constraints": {
+                                    "minYear": 18
+                                },
+                                "range": {
+                                    "start": "01-01-1905",
+                                    "end": "01-01-2005"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Contact Detail",
+                    "type": "form",
+                    "formLayout": {
+                        "fields": [
+                            {
+                                "attribute": "phoneNumber",
+                                "title": "Phone Number",
+                                "required": true,
+                                "type": "string",
+                                "validationRule": "mobilePhone",
+                                "errorMessage": {
+                                    "required": "Mandatory Field",
+                                    "rule": "Invalid Phone Number"
+                                }
+                            },
+                            {
+                                "attribute": "email",
+                                "title": "Email",
+                                "required": true,
+                                "type": "string",
+                                "validationRule": "email",
+                                "errorMessageType": "Invalid Email",
+                                "length": {
+                                    "max": 64,
+                                    "message": "Maximum of 64 chars"
+                                }
+                            },
+                            {
+                                "attribute": "address",
+                                "title": "Address",
+                                "required": true,
+                                "type": "textarea",
+                                "validationRule": "string",
+                                "variant": "outlined",
+                                "errorMessageType": "Invalid Address",
+                                "length": {
+                                    "min": 3,
+                                    "max": 256,
+                                    "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

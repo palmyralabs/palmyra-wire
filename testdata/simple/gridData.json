@@ -1,0 +1,25 @@
+{
+    "result": [
+        {
+            "id":1,
+            "userName": "Rolex",
+            "gender":"M",
+            "dob" : "21-01-2021",
+            "dobs" : "2001-01-21T09:56:78",
+            "email":"rolex@gmail.com"
+        },
+        {
+            "id":2,
+            "userName": "titan",
+            "gender":"M",
+            "email":"titan@gmail.com"
+        },
+        {
+            "id":23,
+            "userName": "fasttrack",
+            "gender":"M",
+            "email":"fasttrack@gmail.com"
+        }
+    ],
+    "total": 15
+}

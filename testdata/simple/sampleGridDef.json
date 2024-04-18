@@ -1,0 +1,48 @@
+{
+    "type": "grid",
+    "idProperty": "id",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "title": "Admin Table",
+                    "type": "grid",
+                    "tableLayout": {
+                        "storeOptions": {
+                            "endPoint": "/userManagement",
+                            "hasLayout": true
+                        },
+                        "pagination": [
+                            5,
+                            15,
+                            25
+                        ],
+                        "quickSearch": [
+                            "name"
+                        ],
+                        "fields": []
+                    }
+                },
+                {
+                    "title": "User Table",
+                    "type": "grid",
+                    "tableLayout": {
+                        "storeOptions": {
+                            "endPoint": "/userManagement"
+                        },
+                        "fields": [
+                            {
+                                "attribute": "loginName",
+                                "title": "Name",
+                                "required": true,
+                                "type": "string",
+                                "searchable": false
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

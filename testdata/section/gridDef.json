@@ -1,0 +1,70 @@
+{
+    "type": "grid",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "name": "",
+                    "type": "grid",
+                    "tableLayout": {
+                        "storeOptions": {
+                            "endPoint": "/"
+                        },
+                        "pagination": [
+                            10,
+                            15,
+                            25
+                        ],
+                        "fields": [
+                            {
+                                "attribute": "dob",
+                                "title": "Dob",
+                                "required": true,
+                                "type": "string",
+                                "searchable": true,
+                                "width": "100px"
+                            },
+                            {
+                                "attribute": "phoneNumber",
+                                "title": "Phone Number",
+                                "required": true,
+                                "type": "string",
+                                "errorMessageType": "Invalid Phone Number",
+                                "searchable": true,
+                                "width": "100px"
+                            },
+                            {
+                                "attribute": "email",
+                                "title": "Email",
+                                "required": true,
+                                "type": "email",
+                                "errorMessageType": "Invalid Email",
+                                "length": {
+                                    "max": 64,
+                                    "message": "Maximum of 64 chars"
+                                },
+                                "width": "150px"
+                            },
+                            {
+                                "attribute": "address",
+                                "title": "Address",
+                                "required": true,
+                                "type": "textarea",
+                                "variant": "outlined",
+                                "errorMessageType": "Invalid Address",
+                                "length": {
+                                    "min": 3,
+                                    "max": 256,
+                                    "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                                ,
+                                "width": "500px"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

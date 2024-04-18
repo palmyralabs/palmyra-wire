@@ -1,0 +1,95 @@
+{
+    "type": "grid",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "title": "Surya Table",
+                    "type": "grid",
+                    "tableLayout": {
+                        "actionOptions":{
+                            "newRecord":{
+                                "topic":"newPage"
+                            }
+                        },
+                        "storeOptions": {
+                            "endPoint": "/"
+                        },
+                        "pagination": [
+                            10,
+                            15,
+                            25
+                        ],
+                        "fields": [
+                            {
+                                "attribute": "userName",
+                                "title": "Name",
+                                "required": true,
+                                "type": "string",
+                                "searchable": true
+                            },
+                            {
+                                "attribute": "gender",
+                                "title": "Gender",
+                                "required": true,
+                                "type": "string",
+                                "searchable": true
+                            },
+                            {
+                                "attribute": "dob",
+                                "title": "Dob",
+                                "required": true,
+                                "type": "date",
+                                "serverPattern": "DD-MM-YYYY",
+                                "displayPattern": "YYYY-MM-DD",
+                                "searchable": true
+                            },
+                            {
+                                "attribute": "dobs",
+                                "title": "DobTime",
+                                "required": true,
+                                "type": "date",
+                                "serverPattern": "YYYY-MM-DDTHH:MM:SS",
+                                "displayPattern": "DD-MM-YYYY",
+                                "searchable": true
+                            },
+                            {
+                                "attribute": "phoneNumber",
+                                "title": "Phone Number",
+                                "required": true,
+                                "type": "string",
+                                "errorMessageType": "Invalid Phone Number",
+                                "searchable": false
+                            },
+                            {
+                                "attribute": "email",
+                                "title": "Email",
+                                "required": true,
+                                "type": "email",
+                                "errorMessageType": "Invalid Email",
+                                "length": {
+                                    "max": 64,
+                                    "message": "Maximum of 64 chars"
+                                }
+                            },
+                            {
+                                "attribute": "address",
+                                "title": "Address",
+                                "required": true,
+                                "type": "textarea",
+                                "variant": "outlined",
+                                "errorMessageType": "Invalid Address",
+                                "length": {
+                                    "min": 3,
+                                    "max": 256,
+                                    "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

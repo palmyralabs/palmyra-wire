@@ -1,0 +1,120 @@
+{
+    "type": "form",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "name": "",
+                    "type": "form",
+                    "formLayout": {
+                        "fields": [
+                            {
+                                "attribute": "userName",
+                                "title": "Name",
+                                "required": true,
+                                "type": "string",
+                                "errorMessageType": "Only Alphabets are allowed",
+                                "length": {
+                                    "min": 3,
+                                    "max": 20,
+                                    "message": "Minimum 3 chars, and maximum of 20 chars"
+                                }
+                            },
+                            {
+                                "attribute": "gender",
+                                "title": "Gender",
+                                "required": true,
+                                "type": "select",
+                                "options": {
+                                    "M": "Male",
+                                    "F": "Female",
+                                    "T": "Transgender"
+                                }
+                            },
+                            {
+                                "attribute": "dob",
+                                "title": "Dob",
+                                "required": true,
+                                "type": "date",
+                                "validationRule": "date",
+                                "format": {
+                                    "pattern": "dd-MM-yyyy",
+                                    "message": "pattern should be this"
+                                },
+                                "constraints": {
+                                    "minYear": 18
+                                },
+                                "range": {
+                                    "start": "01-01-1905",
+                                    "end": "01-01-2005"
+                                }
+                            },
+                            {
+                                "attribute": "time",
+                                "title": "Time",
+                                "required": false,
+                                "type": "datetime"
+                            },
+                            {
+                                "attribute": "phoneNumber",
+                                "title": "Phone Number",
+                                "required": true,
+                                "type": "string",
+                                "validationRule": "mobilePhone",
+                                "errorMessage": {
+                                    "required": "Mandatory Field",
+                                    "rule": "Invalid Phone Number"
+                                }
+                            },
+                            {
+                                "attribute": "email",
+                                "title": "Email",
+                                "required": true,
+                                "type": "string",
+                                "validationRule": "email",
+                                "errorMessageType": "Invalid Email",
+                                "length": {
+                                    "max": 64,
+                                    "message": "Maximum of 64 chars"
+                                }
+                            },
+                            {
+                                "attribute": "address",
+                                "title": "Address",
+                                "required": true,
+                                "type": "textarea",
+                                "variant": "outlined",
+                                "errorMessageType": "Invalid Address",
+                                "length": {
+                                    "min": 3,
+                                    "max": 256,
+                                    "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                            },
+                            {
+                                "attribute": "file",
+                                "title": "file",
+                                "required": true,
+                                "type": "checkbox",
+                                "options": {
+                                    "upload": "Upload Files",
+                                    "download": "Download Files"
+                                }
+                            },
+                            {
+                                "attribute": "status",
+                                "title": "Status",
+                                "type": "switch",
+                                "options": {
+                                    "Enable": 1,
+                                    "Disable": 0
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

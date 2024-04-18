@@ -1,0 +1,449 @@
+{
+    "type": "dashboard",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "name": "Chart",
+                    "title": "Bar Chart",
+                    "type": "chart",
+                    "width": "49%",
+                    "chartLayout": {
+                        "type": "Bar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "styleOptions": {
+                            "count": {
+                                "borderColor": "rgb(255, 99, 132)",
+                                "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                            },
+                            "average": {
+                                "borderColor": "rgb(53, 162, 235)",
+                                "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                            }
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "yLabel": {
+                                "count": "Count",
+                                "average": "Average"
+                            },
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Line Chart",
+                    "type": "chart",
+                    "width": "49%",
+                    "chartLayout": {
+                        "type": "Line",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Pie Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Pie",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                },
+                                "average": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Doughnut Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Doughnut",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                },
+                                "average": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Polar Area Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "PolarArea",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                },
+                                "average": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)",
+                                        "rgba(200, 180, 255, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)",
+                                        "rgba(200, 180, 255, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Radar Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Radar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Bubble Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Bubble",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "xKey": "count",
+                            "yKey": "average",
+                            "rKey": "top"
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Bar Chart",
+                    "type": "chart",
+                    "width": "49%",
+                    "chartLayout": {
+                        "type": "Bar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "styleOptions": [
+                            {
+                                "borderColor": "rgb(255, 99, 132)",
+                                "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                            },
+                            {
+                                "borderColor": "rgb(53, 162, 235)",
+                                "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                            },
+                            {
+                                "borderColor": "rgb(5, 162, 2)",
+                                "backgroundColor": "rgba(5, 162, 5, 0.5)"
+                            }
+                        ],
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "xKey": "helo",
+                            "xLabel": "Month"
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Line Chart",
+                    "type": "chart",
+                    "width": "49%",
+                    "chartLayout": {
+                        "type": "Line",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "value": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Pie Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Pie",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "value": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Doughnut Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Doughnut",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "value": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Polar Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "PolarArea",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "value": {
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Radar Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Radar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataKeyValue.json"
+                        },
+                        "transformOptions": {
+                            "sourceType": "KeyValue",
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "value": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+[
+    {
+        "name": "January",
+        "count": 10,
+        "average": 15
+    },
+    {
+        "name": "February",
+        "count": 15,
+        "average": 33
+    },
+    {
+        "name": "March",
+        "count": 20,
+        "average": 32
+    }
+]
