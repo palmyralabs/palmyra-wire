@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { AbstractRequest, APIErrorHandlerFactory, IEndPoint } from '../Types';
+import { AbstractRequest, APIErrorHandlerFactory, IEndPoint, QueryParams } from '../Types';
 import { hasUnfilledParameter, StringFormat } from '../../utils/StringUtil';
 
 class PalmyraAbstractStore {
@@ -9,7 +9,8 @@ class PalmyraAbstractStore {
     endPoint: IEndPoint
     axiosInstance: AxiosInstance
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, handlerFactory: APIErrorHandlerFactory) {
+    constructor(options: Record<string, any>, 
+        endPoint: IEndPoint, handlerFactory: APIErrorHandlerFactory) {
         this.axiosInstance = axios.create({
             timeout: 5000
         });
@@ -28,6 +29,49 @@ class PalmyraAbstractStore {
         this.options = options;
         this.target = options.target;
         this.endPoint = endPoint;
+    }
+
+    queryUrl(): string {
+        if (typeof this.endPoint == 'string') {
+            return this.endPoint;
+        } else {
+            return this.endPoint.query;
+        }
+    }
+
+    getUrl(): string {
+        if (typeof this.endPoint == 'string') {
+            return this.endPoint;
+        } else {
+            return this.endPoint.get;
+        }
+    }
+
+    postUrl(): string {
+        const ep: IEndPoint = this.getEndPoint();
+        if (typeof ep == 'string') {
+            return ep;
+        } else {
+            return ep.post ? ep.post : ep.get;
+        }
+    }
+
+    putUrl(): string {
+        const ep: IEndPoint = this.getEndPoint();
+        if (typeof ep == 'string') {
+            return ep;
+        } else {
+            return ep.put;
+        }
+    }
+
+    deleteUrl(): string {
+        const ep: IEndPoint = this.getEndPoint();
+        if (typeof ep == 'string') {
+            return ep;
+        } else {
+            return ep.delete ? ep.delete : ep.put;
+        }
     }
 
     getClient(): AxiosInstance {
@@ -65,8 +109,23 @@ class PalmyraAbstractStore {
             if (request.errorHandler(error))
                 return;
         }
-
         error.handleGlobally(error)
+    }
+
+    convertQueryParams(queryParams: QueryParams, limit: number = 15): any {
+        const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
+            const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
+            return order + field;
+        });
+
+        const _total: boolean = queryParams.total ? true : false;
+
+        const _f = queryParams.filter || {};
+
+        const _offset = queryParams.offset || 0;
+        const _limit = queryParams.limit || limit;
+
+        return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
     }
 }
 

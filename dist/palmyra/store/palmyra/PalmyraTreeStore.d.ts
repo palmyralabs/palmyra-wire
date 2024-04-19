@@ -10,7 +10,6 @@ declare class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQuery
     constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);
     getChildren(data: IChildTreeRequest): Promise<QueryResponse<any>>;
     getRoot(): Promise<any>;
-    queryUrl(): string;
     query(request: QueryRequest): Promise<QueryResponse<any>>;
 }
 export { PalmyraTreeStore };

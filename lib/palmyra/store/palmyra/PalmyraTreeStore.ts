@@ -1,7 +1,7 @@
 import { TreeQueryStore } from "../../../main";
 import { AxiosRequestConfig } from 'axios';
 import { PalmyraAbstractStore } from "./AbstractStore";
-import { QueryResponse, QueryParams, QueryRequest, APIErrorHandlerFactory, strings, IEndPoint } from "../Types";
+import { QueryResponse, QueryRequest, APIErrorHandlerFactory, strings, IEndPoint } from "../Types";
 
 interface IChildTreeRequest {
     parent?: number
@@ -23,19 +23,10 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         return this.query(request);
     }
 
-    queryUrl(): string {
-        const endPoint = this.getEndPoint();
-        if (typeof endPoint == 'string') {
-            return endPoint;
-        } else {
-            endPoint.query;
-        }
-    }
-
     query(request: QueryRequest): Promise<QueryResponse<any>> {
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        const urlSortParams = (convertQueryParams(request));
+        const urlSortParams = (this.convertQueryParams(request));
         const params: AxiosRequestConfig = { params: urlSortParams, headers: { action: 'nativeQuery' } };
         return this.getClient().get(url, params)
             .then(response => { return response.data })
@@ -45,20 +36,20 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
 
 export { PalmyraTreeStore };
 
-function convertQueryParams(queryParams: QueryParams): any {
-    const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
-        const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
-        return order + field;
-    });
+// function convertQueryParams(queryParams: QueryParams): any {
+//     const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
+//         const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
+//         return order + field;
+//     });
 
-    const _total: boolean = queryParams.total ? true : false;
+//     const _total: boolean = queryParams.total ? true : false;
 
-    const _f = queryParams.filter || {};
+//     const _f = queryParams.filter || {};
 
-    const _offset = queryParams.offset || 0;
-    const _limit = queryParams.limit || 15;
+//     const _offset = queryParams.offset || 0;
+//     const _limit = queryParams.limit || 15;
 
-    return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
-}
+//     return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
+// }
 
 export type { IChildTreeRequest }

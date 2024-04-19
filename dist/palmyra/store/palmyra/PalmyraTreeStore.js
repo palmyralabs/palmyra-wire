@@ -1,39 +1,29 @@
-var a = Object.defineProperty;
-var h = (r, e, t) => e in r ? a(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
-var l = (r, e, t) => (h(r, typeof e != "symbol" ? e + "" : e, t), t);
-import { PalmyraAbstractStore as d } from "./AbstractStore.js";
-class g extends d {
-  constructor(t, o, n, s) {
-    super(t, o, n);
-    l(this, "idProperty");
-    this.idProperty = s;
+var h = Object.defineProperty;
+var l = (e, t, r) => t in e ? h(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
+var i = (e, t, r) => (l(e, typeof t != "symbol" ? t + "" : t, r), r);
+import { PalmyraAbstractStore as c } from "./AbstractStore.js";
+class p extends c {
+  constructor(r, a, s, n) {
+    super(r, a, s);
+    i(this, "idProperty");
+    this.idProperty = n;
   }
-  getChildren(t) {
-    const o = { filter: { parent: t.parent } };
-    return this.query(o);
+  getChildren(r) {
+    const a = { filter: { parent: r.parent } };
+    return this.query(a);
   }
   getRoot() {
-    const t = {};
-    return this.query(t);
+    const r = {};
+    return this.query(r);
   }
-  queryUrl() {
-    const t = this.getEndPoint();
-    if (typeof t == "string")
-      return t;
-    t.query;
-  }
-  query(t) {
-    var o = this.target + this.queryUrl(), n = this.formatUrl(o, t);
-    const i = { params: u(t), headers: { action: "nativeQuery" } };
-    return this.getClient().get(n, i).then((c) => c.data).catch((c) => {
-      this.handleError(t, c);
+  query(r) {
+    var a = this.target + this.queryUrl(), s = this.formatUrl(a, r);
+    const u = { params: this.convertQueryParams(r), headers: { action: "nativeQuery" } };
+    return this.getClient().get(s, u).then((o) => o.data).catch((o) => {
+      this.handleError(r, o);
     });
   }
 }
-function u(r) {
-  const e = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((i) => (r.sortOrder[i] === "asc" ? "+" : "-") + i), t = !!r.total, o = r.filter || {}, n = r.offset || 0, s = r.limit || 15;
-  return { ...o, _total: t, _orderBy: e.length ? e.join(",") : [], _offset: n, _limit: s };
-}
 export {
-  g as PalmyraTreeStore
+  p as PalmyraTreeStore
 };

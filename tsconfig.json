@@ -19,6 +19,7 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": false,
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {

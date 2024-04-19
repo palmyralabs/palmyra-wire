@@ -6,8 +6,6 @@ declare class PalmyraGridStore extends PalmyraAbstractStore implements GridStore
     idProperty: strings;
     constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);
     getEndPoint(): IEndPoint;
-    queryUrl(): string;
-    getUrl(): string;
     query(request: QueryRequest): Promise<QueryResponse<any>>;
     export(request: ExportRequest): void;
     queryLayout(request: QueryRequest): Promise<any>;

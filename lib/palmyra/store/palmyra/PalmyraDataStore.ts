@@ -40,32 +40,6 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
             .catch(error => {this.handleError(request, error)});
     }
 
-    postUrl(): string {
-        const ep: IEndPoint = this.getEndPoint();
-        if (typeof ep == 'string') {
-            return ep;
-        } else {
-            return ep.post ? ep.post : ep.get;
-        }
-    }
-
-    putUrl(): string {
-        const ep: IEndPoint = this.getEndPoint();
-        if (typeof ep == 'string') {
-            return ep;
-        } else {
-            return ep.put;
-        }
-    }
-
-    deleteUrl(): string {
-        const ep: IEndPoint = this.getEndPoint();
-        if (typeof ep == 'string') {
-            return ep;
-        } else {
-            return ep.delete ? ep.delete : ep.put;
-        }
-    }
 }
 
 export { PalmyraDataStore };

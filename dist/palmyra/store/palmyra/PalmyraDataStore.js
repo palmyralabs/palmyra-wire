@@ -1,57 +1,45 @@
-import { PalmyraGridStore as l } from "./PalmyraGridStore.js";
-class o extends l {
-  constructor(t, s, i, e) {
-    super(t, s, i, e);
+import { PalmyraGridStore as i } from "./PalmyraGridStore.js";
+class n extends i {
+  constructor(s, a, l, r) {
+    super(s, a, l, r);
   }
-  save(t, s) {
-    var i = this.target + this.postUrl(), e = this.formatUrl(i, s);
-    return this.isUrlValid(e) || this.getClient().post(e, t, { headers: { action: "save" } }).then((r) => {
-      var a;
-      return (a = r.data) == null ? void 0 : a.result;
-    }).catch((r) => {
-      this.handleError(s, r);
+  save(s, a) {
+    var l = this.target + this.postUrl(), r = this.formatUrl(l, a);
+    return this.isUrlValid(r) || this.getClient().post(r, s, { headers: { action: "save" } }).then((t) => {
+      var e;
+      return (e = t.data) == null ? void 0 : e.result;
+    }).catch((t) => {
+      this.handleError(a, t);
     });
   }
-  post(t, s) {
-    var i = this.target + this.postUrl(), e = this.formatUrl(i, s);
-    return this.isUrlValid(e) || this.getClient().post(e, t).then((r) => {
-      var a;
-      return (a = r.data) == null ? void 0 : a.result;
-    }).catch((r) => {
-      this.handleError(s, r);
+  post(s, a) {
+    var l = this.target + this.postUrl(), r = this.formatUrl(l, a);
+    return this.isUrlValid(r) || this.getClient().post(r, s).then((t) => {
+      var e;
+      return (e = t.data) == null ? void 0 : e.result;
+    }).catch((t) => {
+      this.handleError(a, t);
     });
   }
-  put(t, s) {
-    var i = this.target + this.putUrl(), e = this.formatUrl(i, s);
-    return this.isUrlValid(e) || this.getClient().put(e, t).then((r) => {
-      var a;
-      return (a = r.data) == null ? void 0 : a.result;
-    }).catch((r) => {
-      this.handleError(s, r);
+  put(s, a) {
+    var l = this.target + this.putUrl(), r = this.formatUrl(l, a);
+    return this.isUrlValid(r) || this.getClient().put(r, s).then((t) => {
+      var e;
+      return (e = t.data) == null ? void 0 : e.result;
+    }).catch((t) => {
+      this.handleError(a, t);
     });
   }
-  remove(t, s) {
-    var i = this.target + this.deleteUrl(), e = this.formatUrl(i, t);
-    return this.isUrlValid(e) || this.getClient().delete(e, { data: {} }).then((r) => {
-      var a;
-      return (a = r.data) == null ? void 0 : a.result;
-    }).catch((r) => {
-      this.handleError(s, r);
+  remove(s, a) {
+    var l = this.target + this.deleteUrl(), r = this.formatUrl(l, s);
+    return this.isUrlValid(r) || this.getClient().delete(r, { data: {} }).then((t) => {
+      var e;
+      return (e = t.data) == null ? void 0 : e.result;
+    }).catch((t) => {
+      this.handleError(a, t);
     });
-  }
-  postUrl() {
-    const t = this.getEndPoint();
-    return typeof t == "string" ? t : t.post ? t.post : t.get;
-  }
-  putUrl() {
-    const t = this.getEndPoint();
-    return typeof t == "string" ? t : t.put;
-  }
-  deleteUrl() {
-    const t = this.getEndPoint();
-    return typeof t == "string" ? t : t.delete ? t.delete : t.put;
   }
 }
 export {
-  o as PalmyraDataStore
+  n as PalmyraDataStore
 };

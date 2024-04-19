@@ -8,8 +8,5 @@ declare class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<
     post(data: any, request?: PostRequest): Promise<T>;
     put(data: any, request?: PutRequest): Promise<T>;
     remove(key: any, request?: RemoveRequest): Promise<T>;
-    postUrl(): string;
-    putUrl(): string;
-    deleteUrl(): string;
 }
 export { PalmyraDataStore };
