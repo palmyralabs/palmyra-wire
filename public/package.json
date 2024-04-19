@@ -23,8 +23,7 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "axios": "^1.4.0",
-    "dayjs": "^1.11.9"
+    "axios": "^1.6.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",

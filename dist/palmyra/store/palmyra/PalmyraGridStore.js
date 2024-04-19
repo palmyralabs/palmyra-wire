@@ -6,7 +6,7 @@ class y extends u {
   constructor(r, i, a, t) {
     super(r, i, a);
     n(this, "idProperty");
-    this.idProperty = t;
+    this.idProperty = t || "id";
   }
   getEndPoint() {
     return this.endPoint;
@@ -15,7 +15,7 @@ class y extends u {
     var i = this.target + this.queryUrl(), a = this.formatUrl(i, r);
     const o = { params: this.convertQueryParams(r) };
     return this.isUrlValid(a) || this.getClient().get(a, o).then((h) => h.data).catch((h) => {
-      this.handleError(r, h);
+      this.handleError(h, r);
     });
   }
   export(r) {
@@ -32,7 +32,7 @@ class y extends u {
         action: "schema"
       }
     }).then((t) => t.data).catch((t) => {
-      this.handleError(r, t);
+      this.handleError(t, r);
     });
   }
   get(r, i) {
@@ -41,7 +41,7 @@ class y extends u {
       var h;
       return (h = o.data) == null ? void 0 : h.result;
     }).catch((o) => {
-      this.handleError(r, o);
+      this.handleError(o, r);
     });
   }
   getIdentity(r) {

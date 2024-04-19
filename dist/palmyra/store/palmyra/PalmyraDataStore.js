@@ -9,7 +9,7 @@ class n extends i {
       var e;
       return (e = t.data) == null ? void 0 : e.result;
     }).catch((t) => {
-      this.handleError(a, t);
+      this.handleError(t, a);
     });
   }
   post(s, a) {
@@ -18,7 +18,7 @@ class n extends i {
       var e;
       return (e = t.data) == null ? void 0 : e.result;
     }).catch((t) => {
-      this.handleError(a, t);
+      this.handleError(t, a);
     });
   }
   put(s, a) {
@@ -27,7 +27,7 @@ class n extends i {
       var e;
       return (e = t.data) == null ? void 0 : e.result;
     }).catch((t) => {
-      this.handleError(a, t);
+      this.handleError(t, a);
     });
   }
   remove(s, a) {
@@ -36,7 +36,7 @@ class n extends i {
       var e;
       return (e = t.data) == null ? void 0 : e.result;
     }).catch((t) => {
-      this.handleError(a, t);
+      this.handleError(t, a);
     });
   }
 }

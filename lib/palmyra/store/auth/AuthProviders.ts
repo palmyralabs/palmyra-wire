@@ -4,7 +4,7 @@ class BasicAuthProvider implements AuthDecorator {
     username:string;
     password:string;
 
-    BasicAuthProvider(username, password){
+    BasicAuthProvider(username:string, password:string){
         this.username = username;
         this.password = password;
     }

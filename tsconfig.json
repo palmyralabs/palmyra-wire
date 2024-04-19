@@ -1,4 +1,5 @@
 {
+  "extends": "./base.tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -8,19 +9,10 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     /* Linting */
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
       "@app/*": [
@@ -30,11 +22,7 @@
   },
   "include": [
     "src",
-    "lib"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+    "lib",
+    "vite.config.ts"
   ]
 }

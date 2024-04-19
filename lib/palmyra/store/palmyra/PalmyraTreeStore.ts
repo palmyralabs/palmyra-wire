@@ -10,9 +10,9 @@ interface IChildTreeRequest {
 class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IChildTreeRequest, any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
         super(options, endPoint, factory);
-        this.idProperty = idProperty;
+        this.idProperty = idProperty || 'id';
     }
     getChildren(data: IChildTreeRequest): Promise<QueryResponse<any>> {
         const request: QueryRequest = { filter: { parent: data.parent } };
@@ -30,7 +30,7 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         const params: AxiosRequestConfig = { params: urlSortParams, headers: { action: 'nativeQuery' } };
         return this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => { this.handleError(request, error) });
+            .catch(error => { this.handleError(error, request) });
     }
 }
 

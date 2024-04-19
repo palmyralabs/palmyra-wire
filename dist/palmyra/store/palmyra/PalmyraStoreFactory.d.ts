@@ -7,7 +7,7 @@ interface PalmyraStoreFactoryArg {
 }
 declare class PalmyraStoreFactory implements StoreFactory<any> {
     baseUrl: string;
-    errorHandlerFactory: APIErrorHandlerFactory;
+    errorHandlerFactory: APIErrorHandlerFactory | undefined;
     constructor(props: PalmyraStoreFactoryArg);
     getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): GridStore<any>;
     getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<any>;

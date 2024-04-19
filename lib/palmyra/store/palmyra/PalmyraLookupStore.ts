@@ -5,9 +5,9 @@ import { PalmyraAbstractStore } from "./AbstractStore";
 class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any>{    
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
         super(options, endPoint, factory);
-        this.idProperty = idProperty;
+        this.idProperty = idProperty || 'id';
     }
 
     query(request: QueryRequest): Promise<QueryResponse<any>> {
@@ -17,7 +17,7 @@ class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => {this.handleError(request, error)});
+            .catch(error => {this.handleError(error, request)});
     }
 }
 

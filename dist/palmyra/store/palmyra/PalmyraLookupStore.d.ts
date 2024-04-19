@@ -4,7 +4,7 @@ import { LookupStore } from '../AsyncStore';
 
 declare class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any> {
     idProperty: strings;
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings);
     query(request: QueryRequest): Promise<QueryResponse<any>>;
 }
 export { PalmyraLookupStore };

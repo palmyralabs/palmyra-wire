@@ -4,7 +4,7 @@ import { GridStore } from '../AsyncStore';
 
 declare class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     idProperty: strings;
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings);
     getEndPoint(): IEndPoint;
     query(request: QueryRequest): Promise<QueryResponse<any>>;
     export(request: ExportRequest): void;

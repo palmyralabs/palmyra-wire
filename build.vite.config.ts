@@ -9,7 +9,7 @@ import { glob } from 'glob'
 export default defineConfig({
   plugins: [
   libInjectCss(),
-  dts({ include: ['lib'] })],
+  dts({ entryRoot:'lib' })],
   server: {
     proxy: { "/api": "http://localhost:6060/" },
     open: true,

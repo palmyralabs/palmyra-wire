@@ -6,7 +6,7 @@ declare class PalmyraAbstractStore {
     target: string;
     endPoint: IEndPoint;
     axiosInstance: AxiosInstance;
-    constructor(options: Record<string, any>, endPoint: IEndPoint, handlerFactory: APIErrorHandlerFactory);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, handlerFactory?: APIErrorHandlerFactory);
     queryUrl(): string;
     getUrl(): string;
     postUrl(): string;
@@ -16,9 +16,9 @@ declare class PalmyraAbstractStore {
     getEndPoint(): IEndPoint;
     getOptions(): Record<string, any>;
     getTarget(): string;
-    formatUrl(urlFormat: string, request: AbstractRequest): string;
+    formatUrl(urlFormat: string, request?: AbstractRequest): string;
     isUrlValid(url: string): any;
-    handleError(request: AbstractRequest, error: any): void;
+    handleError(error: any, request?: AbstractRequest): void;
     convertQueryParams(queryParams: QueryParams, limit?: number): any;
 }
 export { PalmyraAbstractStore };

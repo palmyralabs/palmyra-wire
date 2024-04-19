@@ -10,7 +10,7 @@ class PalmyraAbstractStore {
     axiosInstance: AxiosInstance
 
     constructor(options: Record<string, any>, 
-        endPoint: IEndPoint, handlerFactory: APIErrorHandlerFactory) {
+        endPoint: IEndPoint, handlerFactory?: APIErrorHandlerFactory) {
         this.axiosInstance = axios.create({
             timeout: 5000
         });
@@ -90,7 +90,7 @@ class PalmyraAbstractStore {
         return this.target;
     }
 
-    formatUrl(urlFormat: string, request: AbstractRequest): string {
+    formatUrl(urlFormat: string, request?: AbstractRequest): string {
         if (request)
             return StringFormat(StringFormat(urlFormat, request.options), request.endPointVars);
         else
@@ -104,8 +104,8 @@ class PalmyraAbstractStore {
         return false;
     }
 
-    handleError(request: AbstractRequest, error: any): void {
-        if (request.errorHandler) {
+    handleError(error:any, request?: AbstractRequest): void {
+        if (request?.errorHandler) {
             if (request.errorHandler(error))
                 return;
         }
@@ -113,8 +113,9 @@ class PalmyraAbstractStore {
     }
 
     convertQueryParams(queryParams: QueryParams, limit: number = 15): any {
-        const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
-            const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
+        const sortOrder = queryParams?.sortOrder || {};
+        const orderBy = Object.keys(sortOrder).map(field => {
+            const order = sortOrder[field] === "asc" ? "+" : "-";
             return order + field;
         });
 

@@ -1,9 +1,9 @@
-var a = Object.defineProperty;
-var g = (o, t, e) => t in o ? a(o, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[t] = e;
-var s = (o, t, e) => (g(o, typeof t != "symbol" ? t + "" : t, e), e);
+var g = Object.defineProperty;
+var u = (o, t, e) => t in o ? g(o, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[t] = e;
+var s = (o, t, e) => (u(o, typeof t != "symbol" ? t + "" : t, e), e);
 import d from "axios";
-import { StringFormat as c, hasUnfilledParameter as u } from "../../utils/StringUtil.js";
-class m {
+import { StringFormat as p, hasUnfilledParameter as h } from "../../utils/StringUtil.js";
+class b {
   constructor(t, e, r) {
     s(this, "options");
     s(this, "target");
@@ -51,19 +51,19 @@ class m {
     return this.target;
   }
   formatUrl(t, e) {
-    return e ? c(c(t, e.options), e.endPointVars) : t;
+    return e ? p(p(t, e.options), e.endPointVars) : t;
   }
   isUrlValid(t) {
-    return u(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
+    return h(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
   }
   handleError(t, e) {
-    t.errorHandler && t.errorHandler(e) || e.handleGlobally(e);
+    e != null && e.errorHandler && e.errorHandler(t) || t.handleGlobally(t);
   }
   convertQueryParams(t, e = 15) {
-    const r = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((p) => (t.sortOrder[p] === "asc" ? "+" : "-") + p), i = !!t.total, n = t.filter || {}, l = t.offset || 0, f = t.limit || e;
-    return { ...n, _total: i, _orderBy: r.length ? r.join(",") : [], _offset: l, _limit: f };
+    const r = (t == null ? void 0 : t.sortOrder) || {}, i = Object.keys(r).map((c) => (r[c] === "asc" ? "+" : "-") + c), n = !!t.total, l = t.filter || {}, a = t.offset || 0, f = t.limit || e;
+    return { ...l, _total: n, _orderBy: i.length ? i.join(",") : [], _offset: a, _limit: f };
   }
 }
 export {
-  m as PalmyraAbstractStore
+  b as PalmyraAbstractStore
 };

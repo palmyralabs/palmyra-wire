@@ -5,9 +5,9 @@ import { PalmyraAbstractStore } from "./AbstractStore";
 class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
         super(options, endPoint, factory);
-        this.idProperty = idProperty;
+        this.idProperty = idProperty || 'id';
     }
 
     getEndPoint(): IEndPoint {
@@ -21,7 +21,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => { this.handleError(request, error) });
+            .catch(error => { this.handleError(error, request) });
     }
 
     export(request: ExportRequest): void {
@@ -44,7 +44,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
             }
         })
             .then((response) => response.data)
-            .catch(error => { this.handleError(request, error) });
+            .catch(error => { this.handleError(error, request) });
     }
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
@@ -52,7 +52,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
             .then(response => { return response.data?.result })
-            .catch(error => { this.handleError(request, error) });
+            .catch(error => { this.handleError(error, request) });
     }
 
     getIdentity(o: any) {

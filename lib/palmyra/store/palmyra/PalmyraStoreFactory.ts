@@ -14,7 +14,7 @@ interface PalmyraStoreFactoryArg {
 
 class PalmyraStoreFactory implements StoreFactory<any> {
     baseUrl: string = '/palmyra';
-    errorHandlerFactory: APIErrorHandlerFactory = undefined;
+    errorHandlerFactory: APIErrorHandlerFactory | undefined;
 
     constructor(props: PalmyraStoreFactoryArg) {
         this.baseUrl = props.baseUrl || '/palmyra';

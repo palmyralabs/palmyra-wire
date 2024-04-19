@@ -6,9 +6,9 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         
     idProperty: strings
 
-    constructor(request: Record<string, string>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+    constructor(request: Record<string, string>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
         super(request, endPoint, factory);
-        this.idProperty = idProperty;
+        this.idProperty = idProperty || 'id';
     }
 
     query(request: QueryRequest): Promise<any> {
@@ -18,7 +18,7 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         const params = { params: urlSortParams };
         return this.getClient().get(url, params)
             .then(response => { return response.data?.result })
-            .catch(error => {this.handleError(request, error)});
+            .catch(error => {this.handleError(error, request)});
     }
 }
 

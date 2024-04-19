@@ -6,7 +6,7 @@ class p extends c {
   constructor(r, a, s, n) {
     super(r, a, s);
     i(this, "idProperty");
-    this.idProperty = n;
+    this.idProperty = n || "id";
   }
   getChildren(r) {
     const a = { filter: { parent: r.parent } };
@@ -20,7 +20,7 @@ class p extends c {
     var a = this.target + this.queryUrl(), s = this.formatUrl(a, r);
     const u = { params: this.convertQueryParams(r), headers: { action: "nativeQuery" } };
     return this.getClient().get(s, u).then((o) => o.data).catch((o) => {
-      this.handleError(r, o);
+      this.handleError(o, r);
     });
   }
 }
