@@ -6,13 +6,25 @@ interface IPagination {
     total?: boolean
 }
 
-
-interface StoreFactory<T> {
-    getGridStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): GridStore<T>;
+interface FormStoreFactory<T> {
     getFormStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
-    getChartStore(options: Record<string, string | number>, endPoint?: IEndPoint): ChartStore<T>;
     getLookupStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
+}
+
+interface GridStoreFactory<T> {
+    getGridStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): GridStore<T>;
+}
+
+interface ChartStoreFactory<T> {
+    getChartStore(options: Record<string, string | number>, endPoint?: IEndPoint): ChartStore<T>;
+}
+
+interface TreeStoreFactory<T> {
     getTreeStore(options: Record<string, string | number>, endPoint: IEndPoint): TreeQueryStore<any, any>;
+}
+
+interface StoreFactory<T> extends FormStoreFactory<T>, GridStoreFactory<T>, ChartStoreFactory<T>, TreeStoreFactory<T> {
+
 }
 
 interface MultiEndPoint {
@@ -105,3 +117,4 @@ export type { IPagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOp
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest, ExportRequest, strings }
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse, EXPORT_FORMAT, StoreFactory }
 export type { ErrorHandler, APIErrorHandlerFactory, MultiEndPoint, IEndPoint, IEndPointOptions }
+export type { GridStoreFactory, ChartStoreFactory, FormStoreFactory, TreeStoreFactory }
