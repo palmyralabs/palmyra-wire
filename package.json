@@ -1,5 +1,5 @@
 {
-  "name": "@palmyra76/palmyra-wire",
+  "name": "@palmyralabs/palmyra-wire",
   "private": false,
   "version": "1.0.0",
   "author": "Raja K <raja@palmyralabs.com>",
@@ -53,8 +53,5 @@
   },
   "sideEffects": [
     "**/*.css"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+  ]
 }
