@@ -104,12 +104,13 @@ class PalmyraAbstractStore {
         return false;
     }
 
-    handleError(error:any, request?: AbstractRequest): void {
+    handleError(error:any, request?: AbstractRequest): Promise<never> {
         if (request?.errorHandler) {
             if (request.errorHandler(error))
-                return;
+                return Promise.reject(error);
         }
-        error.handleGlobally(error)
+        error.handleGlobally(error);
+        return Promise.reject(error);
     }
 
     convertQueryParams(queryParams: QueryParams, limit: number = 15): any {

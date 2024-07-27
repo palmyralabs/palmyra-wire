@@ -30,7 +30,7 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         const params: AxiosRequestConfig = { params: urlSortParams, headers: { action: 'nativeQuery' } };
         return this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => { this.handleError(error, request) });
+            .catch(error => this.handleError(error, request));
     }
 }
 

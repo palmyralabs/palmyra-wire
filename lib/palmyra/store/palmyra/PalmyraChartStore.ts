@@ -18,7 +18,7 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         const params = { params: urlSortParams };
         return this.getClient().get(url, params)
             .then(response => { return response.data?.result })
-            .catch(error => {this.handleError(error, request)});
+            .catch(error => this.handleError(error, request));
     }
 }
 

@@ -29,26 +29,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        'axios',
-        'chart.js',
-        'chartjs-plugin-datalabels',
-        'd3',
-        'dayjs',
-        'react',
-        'react-dom',
-        'react-icons',
-        'react-router-dom',
-        'react/jsx-runtime',
-        'react-chartjs-2',        
-        '@emotion/react',
-        '@emotion/styled',
-        '@mui/x-date-pickers',
-        '@mui/material',
-        '@mui/icons-material',
-        '@mui/styled-engine',
-        '@mui/x-tree-view',
-        '@tanstack', 
-        '@tanstack/react-table'
+        'axios'
       ],
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [
