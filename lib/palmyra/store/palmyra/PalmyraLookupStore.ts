@@ -2,7 +2,7 @@ import { LookupStore } from "../AsyncStore";
 import { QueryRequest, QueryResponse, APIErrorHandlerFactory, strings, IEndPoint } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any>{    
+class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any> {
     idProperty: strings
 
     constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
@@ -17,7 +17,7 @@ class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => {this.handleError(error, request)});
+            .catch(error => { return this.handleError(error, request) });
     }
 }
 

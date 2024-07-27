@@ -1,11 +1,11 @@
 var l = Object.defineProperty;
-var m = (s, e, r) => e in s ? l(s, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : s[e] = r;
-var n = (s, e, r) => (m(s, typeof e != "symbol" ? e + "" : e, r), r);
-import { PalmyraAbstractStore as u } from "./AbstractStore.js";
-class y extends u {
+var u = (s, e, r) => e in s ? l(s, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : s[e] = r;
+var h = (s, e, r) => (u(s, typeof e != "symbol" ? e + "" : e, r), r);
+import { PalmyraAbstractStore as m } from "./AbstractStore.js";
+class y extends m {
   constructor(r, i, a, t) {
     super(r, i, a);
-    n(this, "idProperty");
+    h(this, "idProperty");
     this.idProperty = t || "id";
   }
   getEndPoint() {
@@ -14,9 +14,7 @@ class y extends u {
   query(r) {
     var i = this.target + this.queryUrl(), a = this.formatUrl(i, r);
     const o = { params: this.convertQueryParams(r) };
-    return this.isUrlValid(a) || this.getClient().get(a, o).then((h) => h.data).catch((h) => {
-      this.handleError(h, r);
-    });
+    return this.isUrlValid(a) || this.getClient().get(a, o).then((n) => n.data).catch((n) => this.handleError(n, r));
   }
   export(r) {
     var i = this.target + this.queryUrl(), a = this.formatUrl(i, r);
@@ -31,18 +29,14 @@ class y extends u {
       headers: {
         action: "schema"
       }
-    }).then((t) => t.data).catch((t) => {
-      this.handleError(t, r);
-    });
+    }).then((t) => t.data).catch((t) => this.handleError(t, r));
   }
   get(r, i) {
     var a = this.target + this.queryUrl(), t = this.formatUrl(a, r);
     return this.isUrlValid(t) || this.getClient().get(t).then((o) => {
-      var h;
-      return (h = o.data) == null ? void 0 : h.result;
-    }).catch((o) => {
-      this.handleError(o, r);
-    });
+      var n;
+      return (n = o.data) == null ? void 0 : n.result;
+    }).catch((o) => this.handleError(o, r));
   }
   getIdentity(r) {
     throw new Error("Method not implemented.");

@@ -19,9 +19,7 @@ class p extends c {
   query(r) {
     var a = this.target + this.queryUrl(), s = this.formatUrl(a, r);
     const u = { params: this.convertQueryParams(r), headers: { action: "nativeQuery" } };
-    return this.getClient().get(s, u).then((o) => o.data).catch((o) => {
-      this.handleError(o, r);
-    });
+    return this.getClient().get(s, u).then((o) => o.data).catch((o) => this.handleError(o, r));
   }
 }
 export {

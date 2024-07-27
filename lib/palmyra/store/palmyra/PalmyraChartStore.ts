@@ -2,8 +2,8 @@ import { ChartStore } from "../AsyncStore";
 import { QueryRequest, APIErrorHandlerFactory, strings, IEndPoint } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
-        
+class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any> {
+
     idProperty: strings
 
     constructor(request: Record<string, string>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
@@ -18,7 +18,7 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         const params = { params: urlSortParams };
         return this.getClient().get(url, params)
             .then(response => { return response.data?.result })
-            .catch(error => {this.handleError(error, request)});
+            .catch(error => { return this.handleError(error, request) });
     }
 }
 

@@ -18,7 +18,7 @@ declare class PalmyraAbstractStore {
     getTarget(): string;
     formatUrl(urlFormat: string, request?: AbstractRequest): string;
     isUrlValid(url: string): any;
-    handleError(error: any, request?: AbstractRequest): void;
+    handleError(error: any, request?: AbstractRequest): Promise<never>;
     convertQueryParams(queryParams: QueryParams, limit?: number): any;
 }
 export { PalmyraAbstractStore };

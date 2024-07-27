@@ -30,26 +30,10 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         const params: AxiosRequestConfig = { params: urlSortParams, headers: { action: 'nativeQuery' } };
         return this.getClient().get(url, params)
             .then(response => { return response.data })
-            .catch(error => { this.handleError(error, request) });
+            .catch(error => { return this.handleError(error, request) });
     }
 }
 
 export { PalmyraTreeStore };
-
-// function convertQueryParams(queryParams: QueryParams): any {
-//     const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
-//         const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
-//         return order + field;
-//     });
-
-//     const _total: boolean = queryParams.total ? true : false;
-
-//     const _f = queryParams.filter || {};
-
-//     const _offset = queryParams.offset || 0;
-//     const _limit = queryParams.limit || 15;
-
-//     return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
-// }
 
 export type { IChildTreeRequest }

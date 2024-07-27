@@ -19,6 +19,7 @@ class AbstractDataStore {
             })
             .catch(error => {
                 this.globalHandleError(error);
+                return Promise.reject(error);
             });
     }
 
@@ -29,6 +30,7 @@ class AbstractDataStore {
             })
             .catch(error => {
                 this.globalHandleError(error);
+                return Promise.reject(error);
             });
     }
 
@@ -39,6 +41,7 @@ class AbstractDataStore {
             })
             .catch(error => {
                 this.globalHandleError(error);
+                return Promise.reject(error);
             });
     }
 

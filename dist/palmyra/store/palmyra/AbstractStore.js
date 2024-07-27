@@ -3,8 +3,8 @@ var u = (o, t, e) => t in o ? g(o, t, { enumerable: !0, configurable: !0, writab
 var s = (o, t, e) => (u(o, typeof t != "symbol" ? t + "" : t, e), e);
 import d from "axios";
 import { StringFormat as p, hasUnfilledParameter as h } from "../../utils/StringUtil.js";
-class b {
-  constructor(t, e, r) {
+class j {
+  constructor(t, e, i) {
     s(this, "options");
     s(this, "target");
     s(this, "endPoint");
@@ -12,12 +12,12 @@ class b {
     this.axiosInstance = d.create({
       timeout: 5e3
     });
-    const i = r || (() => (n) => {
+    const r = i || (() => (n) => {
       const l = n.request.responseURL || n.config.url;
       console.log(n.response.status + ":" + n.code + "-requestUrl:" + l), console.log(n.message + " -- response data:'" + n.response.data + "'");
     });
     d.interceptors.response.use(void 0, function(n) {
-      return n.handleGlobally = i(n), Promise.reject(n);
+      return n.handleGlobally = r(n), Promise.reject(n);
     }), this.options = t, this.target = t.target, this.endPoint = e;
   }
   queryUrl() {
@@ -57,13 +57,13 @@ class b {
     return h(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
   }
   handleError(t, e) {
-    e != null && e.errorHandler && e.errorHandler(t) || t.handleGlobally(t);
+    return e != null && e.errorHandler && e.errorHandler(t) || t.handleGlobally(t), Promise.reject(t);
   }
   convertQueryParams(t, e = 15) {
-    const r = (t == null ? void 0 : t.sortOrder) || {}, i = Object.keys(r).map((c) => (r[c] === "asc" ? "+" : "-") + c), n = !!t.total, l = t.filter || {}, a = t.offset || 0, f = t.limit || e;
-    return { ...l, _total: n, _orderBy: i.length ? i.join(",") : [], _offset: a, _limit: f };
+    const i = (t == null ? void 0 : t.sortOrder) || {}, r = Object.keys(i).map((c) => (i[c] === "asc" ? "+" : "-") + c), n = !!t.total, l = t.filter || {}, a = t.offset || 0, f = t.limit || e;
+    return { ...l, _total: n, _orderBy: r.length ? r.join(",") : [], _offset: a, _limit: f };
   }
 }
 export {
-  b as PalmyraAbstractStore
+  j as PalmyraAbstractStore
 };

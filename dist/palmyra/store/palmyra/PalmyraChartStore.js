@@ -14,9 +14,7 @@ class P extends c {
     return this.getClient().get(e, m).then((o) => {
       var l;
       return (l = o.data) == null ? void 0 : l.result;
-    }).catch((o) => {
-      this.handleError(o, r);
-    });
+    }).catch((o) => this.handleError(o, r));
   }
 }
 export {

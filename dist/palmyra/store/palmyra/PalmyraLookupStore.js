@@ -11,9 +11,7 @@ class d extends u {
   query(r) {
     var o = this.target + this.queryUrl(), s = this.formatUrl(o, r);
     const h = { params: this.convertQueryParams(r) };
-    return this.isUrlValid(s) || this.getClient().get(s, h).then((e) => e.data).catch((e) => {
-      this.handleError(e, r);
-    });
+    return this.isUrlValid(s) || this.getClient().get(s, h).then((e) => e.data).catch((e) => this.handleError(e, r));
   }
 }
 export {
