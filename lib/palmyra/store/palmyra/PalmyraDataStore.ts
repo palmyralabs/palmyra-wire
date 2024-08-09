@@ -12,32 +12,32 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T> {
         var url: any = this.formatUrl(urlFormat, request);
 
         return this.isUrlValid(url) || this.getClient().post(url, data, { headers: { action: 'save' } })
-            .then(response => { return response.data?.result })
-            .catch(error => { return this.handleError(error, request); });
+            .then(response => response.data?.result)
+            .catch(error => this.handleError(error, request));
     }
 
     post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().post(url, data)
-            .then(response => { return response.data?.result })
-            .catch(error => { return this.handleError(error, request); });
+            .then(response => response.data?.result)
+            .catch(error => this.handleError(error, request));
     }
 
     put(data: any, request?: PutRequest): Promise<T> {
         var urlFormat = this.target + this.putUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().put(url, data)
-            .then(response => { return response.data?.result })
-            .catch(error => { return this.handleError(error, request); });
+            .then(response => response.data?.result)
+            .catch(error => this.handleError(error, request));
     }
 
     remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
         var url: any = this.formatUrl(urlFormat, key);
         return this.isUrlValid(url) || this.getClient().delete(url, { data: {} })
-            .then(response => { return response.data?.result })
-            .catch(error => { return this.handleError(error, request); });
+            .then(response => response.data?.result)
+            .catch(error => this.handleError(error, request));
     }
 
 }

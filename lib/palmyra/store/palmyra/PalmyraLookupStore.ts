@@ -16,8 +16,8 @@ class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any
         const urlSortParams = (this.convertQueryParams(request));
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
-            .then(response => { return response.data })
-            .catch(error => { return this.handleError(error, request) });
+            .then(response => response.data)
+            .catch(error => this.handleError(error, request));
     }
 }
 

@@ -1,7 +1,10 @@
 {
-  "name": "palmyra-wire",
+  "name": "@palmyralabs/palmyra-wire",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "author": "Raja K <raja@palmyralabs.com>",
+  "homepage": "https://github.com/palmyra76/palmyra-wire",
+  "license": "MIT",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -23,24 +26,30 @@
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palmyra76/palmyra-wire.git"
+  },
   "peerDependencies": {
     "axios": "^1.7.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.5",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
-    "@typescript-eslint/parser": "^7.7.0",
-    "@vitest/coverage-v8": "^1.5.0",
+    "@typescript-eslint/parser": "^7.7.0",    
     "axios": "^1.6.8",
-    "glob": "^10.3.12",
     "serve-static": "^1.15.0",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.4",
-    "vite": "^5.2.9",
-    "vite-plugin-dts": "^3.8.3",
-    "vite-plugin-lib-inject-css": "^2.0.1",
-    "vitest": "^1.5.0"
+    "ts-node": "^10.9.2",    
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vite-plugin-dts": "^3.9.0",
+    "vite-plugin-lib-inject-css": "^2.1.1",
+    "vitest": "^2.0.4"
+  },
+  "overrides": {
+    "glob": "^11",
+    "eslint": "^9"
   },
   "sideEffects": [
     "**/*.css"
