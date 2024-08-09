@@ -20,7 +20,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
         const urlSortParams = (this.convertQueryParams(request));
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
-            .then(response => { return response.data })
+            .then(response => response.data)
             .catch(error => this.handleError(error, request));
     }
 
@@ -43,7 +43,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
                 action: 'schema'
             }
         })
-            .then((response) => response.data)
+            .then(response => response.data)
             .catch(error => this.handleError(error, request));
     }
 
@@ -51,7 +51,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
-            .then(response => { return response.data?.result })
+            .then(response => response.data?.result)
             .catch(error => this.handleError(error, request));
     }
 
