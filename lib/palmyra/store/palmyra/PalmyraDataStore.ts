@@ -1,5 +1,5 @@
 import { DataStore } from "../AsyncStore";
-import { APIErrorHandlerFactory, IEndPoint, PostRequest, PutRequest, RemoveRequest, strings } from "../Types";
+import { APIErrorHandlerFactory, IEndPoint, noopTransform, PostRequest, PutRequest, RemoveRequest, strings } from "../Types";
 import { PalmyraGridStore } from "./PalmyraGridStore";
 
 class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T> {
@@ -10,33 +10,36 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T> {
     save(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
         var url: any = this.formatUrl(urlFormat, request);
-
+        const onResult = request?.transformResult || noopTransform;
         return this.isUrlValid(url) || this.getClient().post(url, data, { headers: { action: 'save' } })
-            .then(response => response.data?.result)
+            .then(response => onResult(response.data?.result))
             .catch(error => this.handleError(error, request));
     }
 
     post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
+        const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().post(url, data)
-            .then(response => response.data?.result)
+            .then(response => onResult(response.data?.result))
             .catch(error => this.handleError(error, request));
     }
 
     put(data: any, request?: PutRequest): Promise<T> {
         var urlFormat = this.target + this.putUrl();
+        const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().put(url, data)
-            .then(response => response.data?.result)
+            .then(response => onResult(response.data?.result))
             .catch(error => this.handleError(error, request));
     }
 
     remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
+        const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, key);
         return this.isUrlValid(url) || this.getClient().delete(url, { data: {} })
-            .then(response => response.data?.result)
+            .then(response => onResult(response.data?.result))
             .catch(error => this.handleError(error, request));
     }
 

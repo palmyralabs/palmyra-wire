@@ -1,5 +1,5 @@
 import { GridStore } from "../AsyncStore";
-import { GetRequest, QueryRequest, QueryResponse, ExportRequest, APIErrorHandlerFactory, strings, IEndPoint } from "../Types";
+import { GetRequest, QueryRequest, QueryResponse, ExportRequest, APIErrorHandlerFactory, strings, IEndPoint, noopTransform } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
 class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
@@ -16,11 +16,12 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
 
     query(request: QueryRequest): Promise<QueryResponse<any>> {
         var urlFormat = this.target + this.queryUrl();
+        const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
         const urlSortParams = (this.convertQueryParams(request));
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
-            .then(response => response.data)
+            .then(response => onResult(response.data))
             .catch(error => this.handleError(error, request));
     }
 
@@ -36,6 +37,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     }
 
     queryLayout(request: QueryRequest): Promise<any> {
+        const onResult = request?.transformResult || noopTransform;
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url, {
@@ -43,15 +45,16 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
                 action: 'schema'
             }
         })
-            .then(response => response.data)
+            .then(response => onResult(response.data))
             .catch(error => this.handleError(error, request));
     }
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
+        const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
-            .then(response => response.data?.result)
+            .then(response => onResult(response.data?.result))
             .catch(error => this.handleError(error, request));
     }
 
