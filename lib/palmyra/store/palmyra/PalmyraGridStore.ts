@@ -50,7 +50,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     }
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
-        var urlFormat = this.target + this.queryUrl();
+        var urlFormat = this.target + this.getUrl();
         const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
