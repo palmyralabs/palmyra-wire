@@ -1,4 +1,4 @@
-import { ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest, strings } from "./Types";
+import { AbstractHandler, ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest, strings } from "./Types";
 
 interface LookupStore<T> extends AbstractQueryStore<T> {
 
@@ -20,8 +20,8 @@ interface GridStore<T> extends QueryStore<T> {
 }
 
 interface TreeQueryStore<T, R> {
-    getChildren(data: T): Promise<QueryResponse<R>>;
-    getRoot(): Promise<R>;
+    getChildren(data: T, options?:AbstractHandler): Promise<QueryResponse<R>>;
+    getRoot(options?: AbstractHandler): Promise<R>;
 }
 
 interface DataStore<T> extends QueryStore<T> {

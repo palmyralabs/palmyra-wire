@@ -43,7 +43,12 @@ type strings = string | string[];
 type ErrorHandler = (error: any) => boolean;
 type APIErrorHandlerFactory = (config?: any) => ErrorHandler
 
-interface AbstractRequest {
+interface AbstractHandler {
+    transformResult?: (d: any) => any,
+    transformRequest?: (d: any) => any
+}
+
+interface AbstractRequest extends AbstractHandler {
     options?: QueryOptions,
     endPointVars?: IEndPointOptions,
     errorHandler?: ErrorHandler
@@ -113,8 +118,13 @@ interface Tree<T extends Tree<T>> {
     children?: T[];
 }
 
+const noopTransform = (d:any) => d;
+
 export type { IPagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest }
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest, ExportRequest, strings }
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse, EXPORT_FORMAT, StoreFactory }
 export type { ErrorHandler, APIErrorHandlerFactory, MultiEndPoint, IEndPoint, IEndPointOptions }
 export type { GridStoreFactory, ChartStoreFactory, FormStoreFactory, TreeStoreFactory }
+export type { AbstractHandler }
+
+export {noopTransform}
