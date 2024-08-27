@@ -58,18 +58,18 @@ interface CriteriaOptions {
     filter?: Record<string, any>,
 }
 
-interface QueryRequest extends IPagination, CriteriaOptions, AbstractRequest {
-    sortOrder?: QueryOptions
+interface QueryParams extends IPagination, CriteriaOptions {
+    sortOrder?: Record<string, "asc" | "desc" | undefined>
+}
+
+interface QueryRequest extends QueryParams, AbstractRequest {
+    fields?: string[]
 }
 
 type EXPORT_FORMAT = 'csv' | 'excel' | 'pdf' | 'doc';
 
 interface ExportRequest extends QueryRequest {
     format: EXPORT_FORMAT;
-}
-
-interface QueryParams extends IPagination, CriteriaOptions {
-    sortOrder?: QueryOptions
 }
 
 interface QueryResponse<T> {
@@ -80,7 +80,8 @@ interface QueryResponse<T> {
 }
 
 interface GetRequest extends CriteriaOptions, AbstractRequest {
-    key?: string
+    key?: string,
+    fields?: string[]
 }
 
 interface PostRequest extends AbstractRequest {
@@ -118,7 +119,7 @@ interface Tree<T extends Tree<T>> {
     children?: T[];
 }
 
-const noopTransform = (d:any) => d;
+const noopTransform = (d: any) => d;
 
 export type { IPagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest }
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest, ExportRequest, strings }
@@ -127,4 +128,4 @@ export type { ErrorHandler, APIErrorHandlerFactory, MultiEndPoint, IEndPoint, IE
 export type { GridStoreFactory, ChartStoreFactory, FormStoreFactory, TreeStoreFactory }
 export type { AbstractHandler }
 
-export {noopTransform}
+export { noopTransform }
