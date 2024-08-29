@@ -6,24 +6,29 @@ interface IPagination {
     total?: boolean
 }
 
-interface FormStoreFactory<T> {
-    getFormStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
-    getLookupStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
+interface StoreOptions {
+    endPointOptions?: Record<string, string | number>
 }
 
-interface GridStoreFactory<T> {
-    getGridStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): GridStore<T>;
+interface FormStoreFactory<T, O extends StoreOptions> {
+    getFormStore(options: O, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
+    getLookupStore(options: O, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
 }
 
-interface ChartStoreFactory<T> {
-    getChartStore(options: Record<string, string | number>, endPoint?: IEndPoint): ChartStore<T>;
+interface GridStoreFactory<T, O extends StoreOptions> {
+    getGridStore(options: O, endPoint: IEndPoint, idProperty?: strings): GridStore<T>;
 }
 
-interface TreeStoreFactory<T> {
-    getTreeStore(options: Record<string, string | number>, endPoint: IEndPoint): TreeQueryStore<any, any>;
+interface ChartStoreFactory<T, O extends StoreOptions> {
+    getChartStore(options: O, endPoint?: IEndPoint): ChartStore<T>;
 }
 
-interface StoreFactory<T> extends FormStoreFactory<T>, GridStoreFactory<T>, ChartStoreFactory<T>, TreeStoreFactory<T> {
+interface TreeStoreFactory<T, O extends StoreOptions> {
+    getTreeStore(options: O, endPoint: IEndPoint): TreeQueryStore<any, any>;
+}
+
+interface StoreFactory<T, O extends StoreOptions> extends FormStoreFactory<T, O>,
+    GridStoreFactory<T, O>, ChartStoreFactory<T, O>, TreeStoreFactory<T, O> {
 
 }
 
@@ -126,6 +131,6 @@ export type { GetRequest, PostRequest, PutRequest, RemoveRequest, ExportRequest,
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse, EXPORT_FORMAT, StoreFactory }
 export type { ErrorHandler, APIErrorHandlerFactory, MultiEndPoint, IEndPoint, IEndPointOptions }
 export type { GridStoreFactory, ChartStoreFactory, FormStoreFactory, TreeStoreFactory }
-export type { AbstractHandler }
+export type { AbstractHandler, StoreOptions }
 
 export { noopTransform }

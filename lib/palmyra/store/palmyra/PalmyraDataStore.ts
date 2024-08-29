@@ -1,10 +1,11 @@
 import { DataStore } from "../AsyncStore";
-import { APIErrorHandlerFactory, IEndPoint, noopTransform, PostRequest, PutRequest, RemoveRequest, strings } from "../Types";
+import { APIErrorHandlerFactory, IEndPoint, noopTransform, PostRequest, PutRequest, RemoveRequest, StoreOptions, strings } from "../Types";
 import { PalmyraGridStore } from "./PalmyraGridStore";
 
 class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T> {
-    constructor(request: Record<string, string>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
-        super(request, endPoint, factory, idProperty);
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        factory?: APIErrorHandlerFactory, idProperty?: strings) {
+        super(baseUrl, endPoint, options, factory);
     }
 
     save(data: any, request?: PostRequest): Promise<T> {

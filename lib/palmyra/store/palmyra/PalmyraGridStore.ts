@@ -1,12 +1,13 @@
 import { GridStore } from "../AsyncStore";
-import { GetRequest, QueryRequest, QueryResponse, ExportRequest, APIErrorHandlerFactory, strings, IEndPoint, noopTransform } from "../Types";
+import { GetRequest, QueryRequest, QueryResponse, ExportRequest, APIErrorHandlerFactory, strings, IEndPoint, noopTransform, StoreOptions } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
 class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
-        super(options, endPoint, factory);
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        factory?: APIErrorHandlerFactory, idProperty?: strings) {
+        super(baseUrl, endPoint, options, factory);
         this.idProperty = idProperty || 'id';
     }
 

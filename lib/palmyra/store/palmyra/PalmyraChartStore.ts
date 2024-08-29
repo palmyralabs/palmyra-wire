@@ -1,13 +1,14 @@
 import { ChartStore } from "../AsyncStore";
-import { QueryRequest, APIErrorHandlerFactory, strings, IEndPoint, noopTransform } from "../Types";
+import { QueryRequest, APIErrorHandlerFactory, strings, IEndPoint, noopTransform, StoreOptions } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
 class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any> {
 
     idProperty: strings
 
-    constructor(request: Record<string, string>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
-        super(request, endPoint, factory);
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        factory?: APIErrorHandlerFactory, idProperty?: strings) {
+        super(baseUrl, endPoint, options, factory);
         this.idProperty = idProperty || 'id';
     }
 
