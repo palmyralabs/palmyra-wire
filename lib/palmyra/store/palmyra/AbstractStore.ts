@@ -1,16 +1,16 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { AbstractRequest, APIErrorHandlerFactory, IEndPoint, QueryParams } from '../Types';
+import { AbstractRequest, APIErrorHandlerFactory, IEndPoint, QueryParams, StoreOptions } from '../Types';
 import { hasUnfilledParameter, StringFormat } from '../../utils/StringUtil';
 
 class PalmyraAbstractStore {
-    options: Record<string, any>
+    options: StoreOptions;
     target: string
     endPoint: IEndPoint
     axiosInstance: AxiosInstance
 
-    constructor(options: Record<string, any>, 
-        endPoint: IEndPoint, handlerFactory?: APIErrorHandlerFactory) {
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        handlerFactory?: APIErrorHandlerFactory) {
         this.axiosInstance = axios.create({
             timeout: 5000
         });
@@ -27,7 +27,7 @@ class PalmyraAbstractStore {
         })
 
         this.options = options;
-        this.target = options.target;
+        this.target = baseUrl;
         this.endPoint = endPoint;
     }
 
@@ -82,8 +82,8 @@ class PalmyraAbstractStore {
         return this.endPoint;
     }
 
-    getOptions(): Record<string, any> {
-        return this.options;
+    getOptions(): Record<string, string | number> {
+        return this.options?.endPointOptions || {};
     }
 
     getTarget(): string {
@@ -104,7 +104,7 @@ class PalmyraAbstractStore {
         return false;
     }
 
-    handleError(error:any, request?: AbstractRequest): Promise<never> {
+    handleError(error: any, request?: AbstractRequest): Promise<never> {
         if (request?.errorHandler) {
             if (request.errorHandler(error))
                 return Promise.reject(error);

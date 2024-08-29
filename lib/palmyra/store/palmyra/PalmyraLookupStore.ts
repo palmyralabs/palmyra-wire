@@ -1,12 +1,13 @@
 import { LookupStore } from "../AsyncStore";
-import { QueryRequest, QueryResponse, APIErrorHandlerFactory, strings, IEndPoint, noopTransform } from "../Types";
+import { QueryRequest, QueryResponse, APIErrorHandlerFactory, strings, IEndPoint, noopTransform, StoreOptions } from "../Types";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
 class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
-        super(options, endPoint, factory);
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        factory?: APIErrorHandlerFactory, idProperty?: strings) {
+        super(baseUrl, endPoint, options, factory);
         this.idProperty = idProperty || 'id';
     }
 

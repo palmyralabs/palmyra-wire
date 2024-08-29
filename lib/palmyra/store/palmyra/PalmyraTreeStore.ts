@@ -1,7 +1,7 @@
 import { TreeQueryStore } from "../../../main";
 import { AxiosRequestConfig } from 'axios';
 import { PalmyraAbstractStore } from "./AbstractStore";
-import { QueryResponse, QueryRequest, APIErrorHandlerFactory, strings, IEndPoint, AbstractHandler, noopTransform } from "../Types";
+import { QueryResponse, QueryRequest, APIErrorHandlerFactory, strings, IEndPoint, AbstractHandler, noopTransform, StoreOptions } from "../Types";
 
 interface IChildTreeRequest {
     parent?: number
@@ -10,8 +10,9 @@ interface IChildTreeRequest {
 class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IChildTreeRequest, any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, factory?: APIErrorHandlerFactory, idProperty?: strings) {
-        super(options, endPoint, factory);
+    constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
+        factory?: APIErrorHandlerFactory, idProperty?: strings) {
+        super(baseUrl, endPoint, options, factory);
         this.idProperty = idProperty || 'id';
     }
     getChildren(data: IChildTreeRequest, options?: AbstractHandler): Promise<QueryResponse<any>> {
@@ -23,7 +24,7 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         return this.query(options || {});
     }
 
-    query(request: QueryRequest): Promise<QueryResponse<any>> {        
+    query(request: QueryRequest): Promise<QueryResponse<any>> {
         var urlFormat = this.target + this.queryUrl();
         const onResult = request?.transformResult || noopTransform;
         var url: any = this.formatUrl(urlFormat, request);
