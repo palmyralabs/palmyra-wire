@@ -5,18 +5,18 @@ import orgAxios from "axios";
 vi.mock('axios');
 
 describe('TreeStore', () => {
-    let axios =  vi.mocked(orgAxios, true)
+    let axios = vi.mocked(orgAxios, true)
 
     beforeAll(() => {
         vi.resetAllMocks();
-        axios =  vi.mocked(orgAxios, true)
+        axios = vi.mocked(orgAxios, true)
     });
 
 
     test('GetRoot', async () => {
         const rootData = [{ name: 'xyz' }];
         axios.get.mockResolvedValue({ data: rootData });
-        const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({ baseUrl: '/api/' }, 'palmyra/');
+        const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore('/api/', 'palmyra/', {});
         const transformResult = (d: any) => { return d; };
         treeStore.getRoot({ transformResult }).then(d => { });
     })
