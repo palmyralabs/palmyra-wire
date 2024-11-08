@@ -122,12 +122,35 @@ class PalmyraAbstractStore {
 
         const _total: boolean = queryParams.total ? true : false;
 
-        const _f = queryParams.filter || {};
+        const _f = convertFilter(queryParams.filter);
 
         const _offset = queryParams.offset || 0;
         const _limit = queryParams.limit || limit;
 
         return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
+    }
+}
+
+
+function convertFilter(filterData: any) {
+    const result = {}
+    if (filterData) {
+        Object.entries(filterData).map(([key, value]) => {
+            addToFilter(key, result, value);
+        })
+    }
+    return result;
+}
+
+function addToFilter(key: string, result: Record<string, any>, value: any) {
+    if (typeof value == 'object') {
+        Object.entries(value).map(([k, v]) => {
+            addToFilter(key + '.' + k, result, v);
+        })
+    } else {
+        if (value && value != '') {
+            result[key] = value;
+        }
     }
 }
 

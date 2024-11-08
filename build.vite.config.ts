@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
 import { extname, relative, resolve } from 'path'
 import { fileURLToPath } from 'node:url'
 import { glob } from 'glob'
 
 
 export default defineConfig({
-  plugins: [
-  libInjectCss(),
+  plugins: [  
   dts({ entryRoot:'lib' })],
   server: {
     proxy: { "/api": "http://localhost:6060/" },
