@@ -9,33 +9,48 @@ import { PalmyraTreeStore } from "./PalmyraTreeStore";
 
 interface PalmyraStoreFactoryArg {
     baseUrl?: string
-    errorHandlerFactory?: APIErrorHandlerFactory
+    errorHandlerFactory?: APIErrorHandlerFactory,
+    storeOptions?: StoreOptions
 }
 
 class PalmyraStoreFactory implements StoreFactory<any, StoreOptions> {
     baseUrl: string = '/palmyra';
     errorHandlerFactory: APIErrorHandlerFactory | undefined;
+    storeOptions = {};
 
     constructor(props: PalmyraStoreFactoryArg) {
         this.baseUrl = props.baseUrl || '/palmyra';
         this.errorHandlerFactory = props.errorHandlerFactory;
+        if(props.storeOptions){
+            this.storeOptions = props.storeOptions;
+        }
     }
 
     getGridStore(options: StoreOptions, endPoint: IEndPoint, idProperty?: strings): GridStore<any> {
-        return new PalmyraGridStore(this.baseUrl, endPoint, options, this.errorHandlerFactory, idProperty);
+        const opt = options || {};
+        const o = {...this.storeOptions, ...opt };
+        return new PalmyraGridStore(this.baseUrl, endPoint, o, this.errorHandlerFactory, idProperty);
     }
 
     getFormStore(options: StoreOptions, endPoint: IEndPoint, idProperty?: strings): DataStore<any> {
-        return new PalmyraDataStore(this.baseUrl, endPoint, options, this.errorHandlerFactory, idProperty);
+        const opt = options || {};
+        const o = {...this.storeOptions, ...opt };
+        return new PalmyraDataStore(this.baseUrl, endPoint, o, this.errorHandlerFactory, idProperty);
     }
     getChartStore(options: StoreOptions, endPoint: IEndPoint, idProperty?: strings): ChartStore<any> {
-        return new PalmyraChartStore(this.baseUrl, endPoint, options, this.errorHandlerFactory, idProperty);
+        const opt = options || {};
+        const o = {...this.storeOptions, ...opt };
+        return new PalmyraChartStore(this.baseUrl, endPoint, o, this.errorHandlerFactory, idProperty);
     }
     getLookupStore(options: StoreOptions, endPoint: IEndPoint, idProperty: strings): LookupStore<any> {
-        return new PalmyraLookupStore(this.baseUrl, endPoint, options, this.errorHandlerFactory, idProperty);
+        const opt = options || {};
+        const o = {...this.storeOptions, ...opt };
+        return new PalmyraLookupStore(this.baseUrl, endPoint, o, this.errorHandlerFactory, idProperty);
     }
     getTreeStore(options: StoreOptions, endPoint: IEndPoint): TreeQueryStore<any, any> {
-        return new PalmyraTreeStore(this.baseUrl, endPoint, options, this.errorHandlerFactory);
+        const opt = options || {};
+        const o = {...this.storeOptions, ...opt };
+        return new PalmyraTreeStore(this.baseUrl, endPoint, o, this.errorHandlerFactory);
     }
 }
 
