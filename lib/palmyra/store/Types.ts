@@ -1,3 +1,4 @@
+import { AxiosInstance } from "axios";
 import { ChartStore, DataStore, GridStore, LookupStore, TreeQueryStore } from "./AsyncStore";
 
 interface IPagination {
@@ -8,6 +9,7 @@ interface IPagination {
 
 interface StoreOptions {
     endPointOptions?: Record<string, string | number>
+    axiosCustomizer?: (axios: AxiosInstance) => void
 }
 
 interface FormStoreFactory<T, O extends StoreOptions> {
