@@ -6,7 +6,7 @@ interface LookupStore<T> extends AbstractQueryStore<T> {
 }
 
 interface BaseQueryStore<T> {
-    getAxiosInstance(): AxiosInstance;
+    getClient(): AxiosInstance;
 }
 
 interface AbstractQueryStore<T> extends BaseQueryStore<T> {

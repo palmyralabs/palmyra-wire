@@ -23,7 +23,7 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T
         return Promise.resolve(this.root);
     }
 
-    getAxiosInstance(): AxiosInstance {
+    getClient(): AxiosInstance {
         throw new Error("Unsuported Method");
     }
 
