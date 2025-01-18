@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 
 import { AbstractRequest, APIErrorHandlerFactory, IEndPoint, QueryParams, StoreOptions } from '../Types';
 import { hasUnfilledParameter, StringFormat } from '../../utils/StringUtil';
@@ -32,10 +32,6 @@ class PalmyraAbstractStore {
         this.options = options;
         this.target = baseUrl;
         this.endPoint = endPoint;
-    }
-
-    getAxiosInstance() : AxiosInstance{
-        return this.axiosInstance;    
     }
 
     queryUrl(): string {
@@ -82,7 +78,7 @@ class PalmyraAbstractStore {
     }
 
     getClient(): AxiosInstance {
-        return axios;
+        return this.axiosInstance;
     }
 
     getEndPoint(): IEndPoint {

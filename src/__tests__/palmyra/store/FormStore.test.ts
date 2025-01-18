@@ -12,7 +12,7 @@ describe('Form Store', () => {
         const rootData = [{ name: 'xyz' }];
         const storeFactory = new PalmyraStoreFactory({baseUrl: '/api/palmyra'});
         const store = storeFactory.getFormStore({}, 'masterdata');
-        const getSpy = vi.spyOn(store.getAxiosInstance(), 'get');
+        const getSpy = vi.spyOn(store.getClient(), 'get');
         getSpy.mockResolvedValue({data:{result:rootData}});
 
         const transformResult = (d: any) => { console.log(d); return d; };
