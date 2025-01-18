@@ -2,6 +2,8 @@ import axios, { AxiosInstance } from 'axios';
 
 import { AbstractRequest, APIErrorHandlerFactory, IEndPoint, QueryParams, StoreOptions } from '../Types';
 import { hasUnfilledParameter, StringFormat } from '../../utils/StringUtil';
+import { createAxiosInstance } from '../../utils/AxiosUtil';
+
 
 class PalmyraAbstractStore {
     options: StoreOptions;
@@ -11,9 +13,9 @@ class PalmyraAbstractStore {
 
     constructor(baseUrl: string, endPoint: IEndPoint, options: StoreOptions,
         handlerFactory?: APIErrorHandlerFactory) {
-        this.axiosInstance = axios.create({
-            timeout: 5000
-        });
+        const axiosInstance = createAxiosInstance();
+
+        options.axiosCustomizer && options.axiosCustomizer(axiosInstance);
 
         const factory = handlerFactory || (() => (error) => {
             const url = error.request.responseURL || error.config.url
@@ -21,14 +23,19 @@ class PalmyraAbstractStore {
             console.log(error.message + " -- response data:'" + error.response.data + "'");
         });
 
-        axios.interceptors.response.use(undefined, function (error) {
+        axiosInstance.interceptors.response.use(undefined, function (error) {
             error.handleGlobally = factory(error);
             return Promise.reject(error);
         })
 
+        this.axiosInstance = axiosInstance;
         this.options = options;
         this.target = baseUrl;
         this.endPoint = endPoint;
+    }
+
+    getAxiosInstance() : AxiosInstance{
+        return this.axiosInstance;    
     }
 
     queryUrl(): string {
@@ -109,7 +116,7 @@ class PalmyraAbstractStore {
             if (request.errorHandler(error))
                 return Promise.reject(error);
         }
-        error.handleGlobally(error);
+        error.handleGlobally && error.handleGlobally(error);
         return Promise.reject(error);
     }
 

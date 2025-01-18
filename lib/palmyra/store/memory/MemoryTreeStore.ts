@@ -1,8 +1,9 @@
 
+import { AxiosInstance } from "axios";
 import { TreeQueryStore } from "../AsyncStore";
 import { QueryRequest, GetRequest, Tree, QueryResponse } from "../Types";
 
-abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T>{
+abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T> {
     root: T;
     constructor(data: T) {
         this.root = data;
@@ -20,6 +21,10 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T
 
     getRoot(): Promise<T> {
         return Promise.resolve(this.root);
+    }
+
+    getAxiosInstance(): AxiosInstance {
+        throw new Error("Unsuported Method");
     }
 
     getChildren(data: T): Promise<QueryResponse<T>> {

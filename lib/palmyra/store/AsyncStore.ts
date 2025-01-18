@@ -1,10 +1,15 @@
+import { AxiosInstance } from "axios";
 import { AbstractHandler, ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest, strings } from "./Types";
 
 interface LookupStore<T> extends AbstractQueryStore<T> {
 
 }
 
-interface AbstractQueryStore<T> {
+interface BaseQueryStore<T> {
+    getAxiosInstance(): AxiosInstance;
+}
+
+interface AbstractQueryStore<T> extends BaseQueryStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
 }
 
@@ -19,8 +24,8 @@ interface GridStore<T> extends QueryStore<T> {
     export(request: ExportRequest): void;
 }
 
-interface TreeQueryStore<T, R> {
-    getChildren(data: T, options?:AbstractHandler): Promise<QueryResponse<R>>;
+interface TreeQueryStore<T, R> extends BaseQueryStore<T> {
+    getChildren(data: T, options?: AbstractHandler): Promise<QueryResponse<R>>;
     getRoot(options?: AbstractHandler): Promise<R>;
 }
 
