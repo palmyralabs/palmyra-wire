@@ -14,7 +14,7 @@ export default defineConfig({
     port: 4000
   },
   build: {
-    target: 'modules',
+    target: ['esnext'],
     // minify: 'terser',
     modulePreload: {
       polyfill: false,
