@@ -35,10 +35,10 @@ interface StoreFactory<T, O extends StoreOptions> extends FormStoreFactory<T, O>
 }
 
 interface MultiEndPoint {
-    query: string,
-    get: string,
+    query?: string,
+    get?: string,
     post?: string,
-    put: string,
+    put?: string,
     delete?: string
 }
 
