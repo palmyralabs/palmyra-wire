@@ -34,7 +34,7 @@ class PalmyraAbstractStore {
         this.endPoint = endPoint;
     }
 
-    queryUrl(): string {
+    queryUrl(): string | undefined {
         if (typeof this.endPoint == 'string') {
             return this.endPoint;
         } else {
@@ -42,7 +42,7 @@ class PalmyraAbstractStore {
         }
     }
 
-    getUrl(): string {
+    getUrl(): string | undefined {
         if (typeof this.endPoint == 'string') {
             return this.endPoint;
         } else {
@@ -50,7 +50,7 @@ class PalmyraAbstractStore {
         }
     }
 
-    postUrl(): string {
+    postUrl(): string | undefined {
         const ep: IEndPoint = this.getEndPoint();
         if (typeof ep == 'string') {
             return ep;
@@ -59,7 +59,7 @@ class PalmyraAbstractStore {
         }
     }
 
-    putUrl(): string {
+    putUrl(): string | undefined {
         const ep: IEndPoint = this.getEndPoint();
         if (typeof ep == 'string') {
             return ep;
@@ -68,7 +68,7 @@ class PalmyraAbstractStore {
         }
     }
 
-    deleteUrl(): string {
+    deleteUrl(): string | undefined {
         const ep: IEndPoint = this.getEndPoint();
         if (typeof ep == 'string') {
             return ep;
